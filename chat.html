@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-icon" id="chat-icon">💬</div>
+    <div class="chat-window" id="chat-window">
+        <div class="exit-btn-sm" id="exit-btn-sm" style="display: none;">Thoát</div>
+        <div class="employee-selection" id="employee-selection">
+            <h5>Chọn nhân viên</h5>
+            <ul class="employee-list" id="employee-list">
+                <!-- Employee names will be appended here -->
+            </ul>
+        </div>
+        <div class="chat-header" id="chat-header" style="display: none;">
+            <span>Chat với <span id="employee-name"></span></span>
+            <i class="fas fa-times" id="chat-close"></i>
+        </div>
+        <div class="chat-body" id="chat-body" style="display: none;">
+            <!-- Chat messages will be appended here -->
+        </div>
+        <div class="chat-footer" id="chat-footer" style="display: none;">
+            <input type="text" id="chat-input" placeholder="Nhập tin nhắn...">
+            <button id="chat-send">Gửi</button>
+        </div>
+        <div class="chat-buttons" id="chat-buttons" style="display: none;">
+            <button id="chat-back">Quay lại</button>
+            <button id="chat-exit">Thoát</button>
+        </div>
+    </div>
+
+    <script src="chatApp.js"></script>
+</body>
+</html>
+<style>
+    /* Base styles */
+.chat-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.chat-window {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-body {
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.chat-footer {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.chat-footer input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.chat-footer button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.employee-selection {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.employee-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.employee-list li {
+    padding: 5px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
+
+.employee-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.chat-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.chat-buttons button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-buttons button#chat-exit {
+    background-color: #dc3545;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .chat-window {
+        width: 100%;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+    
+    .chat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    
+    .chat-header, .chat-footer, .chat-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .chat-footer button, .chat-buttons button {
+        margin-left: 0;
+        margin-top: 5px;
+        width: 100%;
+    }
+    
+    .chat-body {
+        height: 200px;
+    }
+    
+    .exit-btn-sm {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        z-index: 1000;
+    }
+}
+</style>
+<script>
+    // Load employees from localStorage and display in the employee list
+function loadEmployees() {
+    const employees = JSON.parse(localStorage.getItem('employees')) || [];
+    const employeeList = document.getElementById('employee-list');
+    employeeList.innerHTML = '';
+    employees.forEach(employee => {
+        const li = document.createElement('li');
+        li.textContent = employee.fullname;
+        li.dataset.id = employee.id;
+        employeeList.appendChild(li);
+    });
+}
+
+// Save messages to localStorage
+function saveMessages(employeeId, messages) {
+    const allMessages = JSON.parse(localStorage.getItem('messages')) || {};
+    allMessages[employeeId] = messages;
+    localStorage.setItem('messages', JSON.stringify(allMessages));
+}
+
+// Load messages from localStorage
+function loadMessages(employeeId) {
+    const allMessages = JSON.parse(localStorage.getItem('messages')) || {};
+    return allMessages[employeeId] || [];
+}
+
+// Display messages in chat body
+function displayMessages(messages) {
+    const chatBody = document.getElementById('chat-body');
+    chatBody.innerHTML = '';
+    messages.forEach(message => {
+        const messageElement = document.createElement('div');
+        messageElement.style.padding = '5px';
+        messageElement.style.borderBottom = '1px solid #ccc';
+        messageElement.textContent = message;
+        chatBody.appendChild(messageElement);
+    });
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Initialize chat
+document.getElementById('chat-icon').addEventListener('click', function() {
+    const chatWindow = document.getElementById('chat-window');
+    if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+        chatWindow.style.display = 'flex';
+        document.getElementById('employee-selection').style.display = 'block';
+        loadEmployees();
+    } else {
+        chatWindow.style.display = 'none';
+    }
+});
+
+document.getElementById('chat-close').addEventListener('click', function() {
+    document.getElementById('chat-window').style.display = 'none';
+});
+
+document.getElementById('chat-exit').addEventListener('click', function() {
+    document.getElementById('chat-window').style.display = 'none';
+});
+
+document.getElementById('exit-btn-sm').addEventListener('click', function() {
+    document.getElementById('chat-window').style.display = 'none';
+});
+
+document.getElementById('chat-back').addEventListener('click', function() {
+    document.getElementById('employee-selection').style.display = 'block';
+    document.getElementById('chat-header').style.display = 'none';
+    document.getElementById('chat-body').style.display = 'none';
+    document.getElementById('chat-footer').style.display = 'none';
+    document.getElementById('chat-buttons').style.display = 'none';
+});
+
+let currentEmployeeId = null;
+
+document.getElementById('employee-list').addEventListener('click', function(e) {
+    if (e.target && e.target.nodeName === 'LI') {
+        currentEmployeeId = e.target.dataset.id;
+        const selectedEmployeeName = e.target.textContent;
+
+        document.getElementById('employee-selection').style.display = 'none';
+        document.getElementById('chat-header').style.display = 'flex';
+        document.getElementById('chat-body').style.display = 'block';
+        document.getElementById('chat-footer').style.display = 'flex';
+        document.getElementById('chat-buttons').style.display = 'flex';
+        document.getElementById('employee-name').textContent = selectedEmployeeName;
+
+        const messages = loadMessages(currentEmployeeId);
+        displayMessages(messages);
+    }
+});
+
+document.getElementById('chat-send').addEventListener('click', function() {
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput.value.trim() !== '') {
+        const message = 'Admin: ' + chatInput.value.trim();
+        chatInput.value = '';
+
+        const messages = loadMessages(currentEmployeeId);
+        messages.push(message);
+        saveMessages(currentEmployeeId, messages);
+
+        displayMessages(messages);
+    }
+});
+
+document.getElementById('chat-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        document.getElementById('chat-send').click();
+    }
+});
+
+</script>

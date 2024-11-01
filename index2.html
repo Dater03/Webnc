@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <title>Gr6 - Admin</title>
+
+        <link rel="shortcut icon" href="assets/img/small-logopng.png">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+        <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+        <div class="main-wrapper">
+            <div class="header">
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+                        <img src="assets/img/logo.png" alt="Logo">
+                    </a>
+                    <a href="index.html" class="logo logo-small">
+                        <img src="assets/img/small-logopng.png" alt="Logo" width="30" height="30">
+                    </a>
+                    <a href="javascript:void(0);" id="toggle_btn">
+                        <span class="bar-icon"><span></span><span></span><span></span></span>
+                    </a>
+                </div>
+                <div class="top-nav-search">
+                    <form id="search-form">
+                        <input type="text" id="search-input" class="form-control" placeholder="Tìm kiếm">
+                        <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <a class="mobile_btn" id="mobile_btn">
+                    <i class="fas fa-bars"></i>
+                </a>
+
+                <ul class="nav user-menu">
+                    <li class="nav-item dropdown has-arrow main-drop">
+                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            <span class="user-img">
+                                <img src="assets/img/profiles/avatar-18.jpg" alt="User Image">
+                                <span class="status online"></span>
+                            </span>
+                            <span>Admin_Group6</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="profile.html"><i data-feather="user" class="mr-1"></i>Thông tin cá nhân</a>
+                            <a class="dropdown-item" href="setting.html"><i data-feather="settings" class="mr-1"></i>Cài đặt</a>
+                            <a class="dropdown-item" href="login.html"><i data-feather="log-out" class="mr-1"></i>Đăng xuất</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="dropdown mobile-user-menu show">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="profile.html">Thông tin cá nhân</a>
+                        <a class="dropdown-item" href="setting.html">Cài đặt</a>
+                        <a class="dropdown-item" href="login.html">Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+                    <div class="sidebar-contents">
+                        <div id="sidebar-menu" class="sidebar-menu">
+                            <div class="mobile-show">
+                                <div class="offcanvas-menu">
+                                    <div class="user-info align-center bg-theme text-center">
+                                        <span class="lnr lnr-cross text-white" id="mobile_btn_close">X</span>
+                                        <a href="javascript:void(0)" class="d-block menu-style text-white">
+                                            <div class="user-avatar d-inline-block mr-3">
+                                                <img src="assets/img/profiles/avatar-18.jpg" alt="user avatar" class="rounded-circle" width="50">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="sidebar-input">
+                                    <div class="top-nav-search">
+                                        <form id="search-form1">
+                                            <input type="text" id="search-input1" class="form-control" placeholder="Tìm kiếm">
+                                            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="menu-list">
+                                <li id="menu-overview" class="active">
+                                    <a href="index.html"><i class="fas fa-home"></i><span>Tổng quan</span></a>
+                                </li>
+                                <li id="menu-employee">
+                                    <a href="employee.html"><i class="fas fa-users"></i><span>Quản lý nhân viên</span></a>
+                                </li>
+                                <li id="menu-department">
+                                    <a href="department.html"><i class="fas fa-building"></i><span>Quản lý phòng ban</span></a>
+                                </li>
+                                <li id="menu-salary">
+                                    <a href="#" class="collapsed"><i class="fas fa-dollar-sign"></i><span>Quản lý lương</span></a>
+                                    <ul class="bg-sm" style="display: none;">
+                                        <li id="menu-salary-calculate"><a href="salaryCalculate.html">Tính lương</a></li>
+                                        <li id="menu-salary-table"><a href="salaryTable.html">Bảng lương</a></li>
+                                    </ul>
+                                </li>
+                                <li id="menu-business">
+                                    <a href="#" class="collapsed"><i class="fas fa-briefcase"></i><span>Quản lý công tác</span></a>
+                                    <ul class="bg-sm" style="display: none;">
+                                        <li id="menu-business-create"><a href="businessCreate.html">Tạo lịch công tác</a></li>
+                                        <li id="menu-business-list"><a href="businessList.html">Danh sách công tác</a></li>
+                                    </ul>
+                                </li>
+                                <li id="menu-calendar">
+                                    <a href="#" class="collapsed"><i class="fas fa-calendar-alt"></i><span>Quản lý lịch làm</span></a>
+                                    <ul class="bg-sm" style="display: none;">
+                                        <li id="menu-calendar-create"><a href="calendarCreate.html">Tạo lịch làm</a></li>
+                                        <li id="menu-calendar-list"><a href="calendarList.html">Danh sách lịch làm</a></li>
+                                    </ul>
+                                </li>
+                                <li id="menu-employee-group">
+                                    <a href="group.html"><i class="fas fa-users-cog"></i><span>Nhóm nhân viên</span></a>
+                                </li>
+                                <li id="menu-rate">
+                                    <a href="rate.html"><i class="fas fa-star"></i><span>Đánh giá</span></a>
+                                </li>
+                                <li id="menu-account">
+                                    <a href="#" class="collapsed"><i class="fas fa-user"></i><span>Tài khoản</span></a>
+                                    <ul class="bg-sm" style="display: none;">
+                                        <li id="menu-account-profile"><a href="accountProfile.html">Thông tin tài khoản</a></li>
+                                        <li id="menu-account-create"><a href="accountCreate.html">Tạo tài khoản</a></li>
+                                        <li id="menu-account-list"><a href="accountList.html">Danh sách tài khoản</a></li>
+                                        <li id="menu-account-logoff"><a href="login.html">Đăng xuất</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+                    <div class="page-name mb-4">
+                        <h4 class="m-0"><img src="assets/img/profiles/avatar-18.jpg" class="mr-1" alt="profile"> Xin chào quản trị viên!</h4>
+                        <label>Ngày 12 Tháng 6 Năm 2024</label>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-xl-12 col-sm-12 col-12">
+                            <div class="breadcrumb-path">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html"><img src="assets/img/dash.png" class="mr-3" alt="breadcrumb">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Tổng quan</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget d-flex justify-content-between align-items-center">
+                                        <div class="dash-widget-info">
+                                            <h4 class="m-0"><span class="dash-widget-title">Tổng số nhân viên</span> 215</h4>
+                                        </div>
+                                        <div class="dash-widget-icon bg-primary">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget d-flex justify-content-between align-items-center">
+                                        <div class="dash-widget-info">
+                                            <h4 class="m-0"><span class="dash-widget-title">Tổng số phòng ban</span> 8</h4>
+                                        </div>
+                                        <div class="dash-widget-icon bg-warning">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget d-flex justify-content-between align-items-center">
+                                        <div class="dash-widget-info">
+                                            <h4 class="m-0"><span class="dash-widget-title">Lương đã trả</span> $20,000</h4>
+                                        </div>
+                                        <div class="dash-widget-icon bg-danger">
+                                            <i class="fas fa-dollar-sign"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget d-flex justify-content-between align-items-center">
+                                        <div class="dash-widget-info">
+                                            <h4 class="m-0"><span class="dash-widget-title">Số giờ làm thêm</span> 150</h4>
+                                        </div>
+                                        <div class="dash-widget-icon bg-info">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12 col-sm-12 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-6">
+                                            <h6 class="m-0">Thông báo quan trọng</h6>
+                                            <p class="m-0 text-muted">Dưới đây là những thông báo quan trọng cần chú ý</p>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <button class="btn btn-primary btn-sm">Xem tất cả</button>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Nội dung</th>
+                                                    <th>Ngày thông báo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Cuộc họp tổng kết tháng 6</td>
+                                                    <td>10/06/2024</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Điều chỉnh lịch làm việc</td>
+                                                    <td>08/06/2024</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Thưởng doanh số quý 2</td>
+                                                    <td>05/06/2024</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>Thông báo nghỉ lễ</td>
+                                                    <td>01/06/2024</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/jquery-3.6.0.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="assets/plugins/feather/feather.min.js"></script>
+        <script src="assets/js/script.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#toggle_btn, .mobile_btn, .user-menu a[data-toggle="dropdown"], .dropdown.mobile-user-menu a[data-toggle="dropdown"]').click(function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var target = $(this).attr('href');
+                    if (target) {
+                        $(target).toggleClass('show');
+                    } else {
+                        $(this).closest('.dropdown-menu').toggleClass('show');
+                    }
+                });
+
+                // Close sidebar menu on mobile button click
+                $('#mobile_btn').click(function() {
+                    $('#sidebar').toggleClass('slide-in');
+                });
+
+                $('#mobile_btn_close').click(function() {
+                    $('#sidebar').removeClass('slide-in');
+                });
+
+                // Mobile menu dropdown toggle
+                $('.menu-list > li > a.collapsed').click(function(e) {
+                    e.preventDefault();
+                    var submenu = $(this).next('ul');
+                    if (submenu.is(':visible')) {
+                        submenu.slideUp(200);
+                    } else {
+                        $('.menu-list > li > ul:visible').slideUp(200);
+                        submenu.slideDown(200);
+                    }
+                });
+
+                // Search input handling
+                $('#search-form, #search-form1').on('submit', function(e) {
+                    e.preventDefault();
+                    alert('Search function is not implemented yet.');
+                });
+
+                // Highlight the active menu item
+                var currentPath = window.location.pathname.split('/').pop();
+                $('#sidebar-menu a[href="'+ currentPath +'"]').parent('li').addClass('active');
+            });
+        </script>
+    </body>
+</html>

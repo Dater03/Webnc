@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		<title>Gr6 - Admin</title>
+
+        <link rel="shortcut icon" href="assets/img/small-logo.png">
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+		<link rel="stylesheet" href="assets/css/style.css">
+	</head>
+	<body>
+		<div class="slider-container">
+			<img src="assets/img/slide1.jpeg" class="active" alt="Slide 1">
+			<img src="assets/img/slide5.webp" alt="Slide 2">
+			<img src="assets/img/slide4.jpg" alt="Slide 3">
+		</div>
+
+		<div class="main-wrapper login-body">
+			<div class="login-wrapper">
+				<div class="container">
+					<div class="loginbox">
+						<div class="login-right">
+							<div class="login-right-wrap">
+								<h1 class="pt-3">Đăng nhập</h1>
+								<p class="text-center p-2">Bạn đang đăng nhập với tư cách quản trị viên</p>
+								<form id="login-form">
+									<div class="form-group">
+										<label class="form-control-label">Email</label>
+										<input type="email" id="email" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label class="form-control-label">Mật khẩu</label>
+										<div class="pass-group">
+											<input type="password" id="password" class="form-control pass-input" required>
+											<span class="fas fa-eye toggle-password" style="cursor: pointer;"></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-6">
+												<div class="custom-control custom-checkbox">
+													<input type="checkbox" class="custom-control-input" id="cb1">
+													<label class="custom-control-label" for="cb1">Lưu đăng nhập</label>
+												</div>
+											</div>
+											<div class="col-6 text-right">
+												<a class="forgot-link" href="forgot-password.html">Quên mật khẩu?</a>
+											</div>
+										</div>
+									</div>
+									<button class="btn btn-lg btn-block btn-secondary" type="submit">Đăng nhập</button>
+									<div id="error-message" class="mt-2 text-danger" style="display: none;">Email hoặc mật khẩu không đúng. Vui lòng thử lại.</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="assets/js/jquery-3.6.0.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/feather.min.js"></script>
+        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="assets/js/script.js"></script>
+        <script src="assets/js/login.js"></script>
+	</body>
+</html>
